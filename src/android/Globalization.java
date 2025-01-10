@@ -224,6 +224,14 @@ public class Globalization extends CordovaPlugin  {
         }
     }
 
+    /*
+     * @Description: Returns Country code.
+     *
+     * @Return: JSONObject
+     *          Object.value {String}: The country code identifier
+     *
+     * @throws: GlobalizationError.UNKNOWN_ERROR
+     */
     private JSONObject getCountryCode() throws GlobalizationError {
         JSONObject obj = new JSONObject();
         try {
