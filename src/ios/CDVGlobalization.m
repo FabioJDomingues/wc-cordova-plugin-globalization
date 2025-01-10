@@ -69,6 +69,21 @@
     [self.commandDelegate sendPluginResult:result callbackId:[command callbackId]];
 }
 
+- (void)getCountryCode:(CDVInvokedUrlCommand*)command
+{
+    CDVPluginResult* result = nil;
+
+    NSLocale *locale = [NSLocale currentLocale];
+    NSString *countryCode = [locale objectForKey:NSLocaleCountryCode];
+
+    NSDictionary* dictionary = [NSDictionary dictionaryWithObject:countryCode forKey:@"value"];
+
+    result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK
+                            messageAsDictionary:dictionary];
+
+    [self.commandDelegate sendPluginResult:result callbackId:[command callbackId]];
+}
+
 - (void)getLocaleName:(CDVInvokedUrlCommand*)command
 {
     CDVPluginResult* result = nil;

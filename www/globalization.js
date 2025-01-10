@@ -24,26 +24,31 @@ var exec = require('cordova/exec');
 
 var globalization = {
 
-/**
-* Returns the string identifier for the client's current language.
-* It returns the language identifier string to the successCB callback with a
-* properties object as a parameter. If there is an error getting the language,
-* then the errorCB callback is invoked.
-*
-* @param {Function} successCB
-* @param {Function} errorCB
-*
-* @return Object.value {String}: The language identifier
-*
-* @error GlobalizationError.UNKNOWN_ERROR
-*
-* Example
-*    globalization.getPreferredLanguage(function (language) {alert('language:' + language.value + '\n');},
-*                                function () {});
-*/
+    /**
+    * Returns the string identifier for the client's current language.
+    * It returns the language identifier string to the successCB callback with a
+    * properties object as a parameter. If there is an error getting the language,
+    * then the errorCB callback is invoked.
+    *
+    * @param {Function} successCB
+    * @param {Function} errorCB
+    *
+    * @return Object.value {String}: The language identifier
+    *
+    * @error GlobalizationError.UNKNOWN_ERROR
+    *
+    * Example
+    *    globalization.getPreferredLanguage(function (language) {alert('language:' + language.value + '\n');},
+    *                                function () {});
+    */
     getPreferredLanguage: function (successCB, failureCB) {
         argscheck.checkArgs('fF', 'Globalization.getPreferredLanguage', arguments);
         exec(successCB, failureCB, 'Globalization', 'getPreferredLanguage', []);
+    },
+
+    getCountryCode: function (successCB, failureCB) {
+        argscheck.checkArgs('fF', 'Globalization.getCountryCode', arguments);
+        exec(successCB, failureCB, 'Globalization', 'getCountryCode', []);
     },
 
     /**

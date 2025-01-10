@@ -60,6 +60,7 @@ public class Globalization extends CordovaPlugin  {
     public static final String GETNUMBERPATTERN = "getNumberPattern";
     public static final String GETCURRENCYPATTERN = "getCurrencyPattern";
     public static final String GETPREFERREDLANGUAGE = "getPreferredLanguage";
+    public static final String GETCOUNTRYCODE = "getCountryCode";
 
     //GlobalizationCommand Option Parameters
     public static final String OPTIONS = "options";
@@ -95,7 +96,9 @@ public class Globalization extends CordovaPlugin  {
                 obj = getLocaleName();
             }else if (action.equals(GETPREFERREDLANGUAGE)){
                 obj = getPreferredLanguage();
-            } else if (action.equalsIgnoreCase(DATETOSTRING)) {
+            }else if (action.equals(GETCOUNTRYCODE)){
+                obj = getCountryCode();
+            }else if (action.equalsIgnoreCase(DATETOSTRING)) {
                 obj = getDateToString(data);
             }else if(action.equalsIgnoreCase(STRINGTODATE)){
                 obj = getStringtoDate(data);
@@ -215,6 +218,16 @@ public class Globalization extends CordovaPlugin  {
         JSONObject obj = new JSONObject();
         try {
             obj.put("value", toBcp47Language(Locale.getDefault()));
+            return obj;
+        } catch (Exception e) {
+            throw new GlobalizationError(GlobalizationError.UNKNOWN_ERROR);
+        }
+    }
+
+    private JSONObject getCountryCode() throws GlobalizationError {
+        JSONObject obj = new JSONObject();
+        try {
+            obj.put("value", Locale.getDefault().getCountry(););
             return obj;
         } catch (Exception e) {
             throw new GlobalizationError(GlobalizationError.UNKNOWN_ERROR);

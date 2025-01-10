@@ -23,6 +23,10 @@ interface Globalization {
     getPreferredLanguage(
         onSuccess: (language: { value: string; }) => void,
         onError: (error: GlobalizationError) => void): void;
+
+    getCountryCode(
+        onSuccess: (countryCode: { value: string; }) => void,
+        onError: (error: GlobalizationError) => void): void;
     /**
      * Get the string identifier for the client's current locale setting.
      * @param onSuccess Called on success getting the locale identifier with a properties object,
