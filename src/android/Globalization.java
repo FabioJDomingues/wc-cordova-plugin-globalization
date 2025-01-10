@@ -227,7 +227,7 @@ public class Globalization extends CordovaPlugin  {
     private JSONObject getCountryCode() throws GlobalizationError {
         JSONObject obj = new JSONObject();
         try {
-            obj.put("value", Locale.getDefault().getCountry(););
+            obj.put("value", Locale.getDefault().getCountry());
             return obj;
         } catch (Exception e) {
             throw new GlobalizationError(GlobalizationError.UNKNOWN_ERROR);
