@@ -24,7 +24,11 @@ interface Globalization {
         onSuccess: (language: { value: string; }) => void,
         onError: (error: GlobalizationError) => void): void;
 
-        getCountryCode(
+    getCountryCode(
+        onSuccess: (countryCode: { value: string; }) => void,
+        onError: (error: GlobalizationError) => void): void;
+    
+    getCountryCode_Alternative(
         onSuccess: (countryCode: { value: string; }) => void,
         onError: (error: GlobalizationError) => void): void;
     /**

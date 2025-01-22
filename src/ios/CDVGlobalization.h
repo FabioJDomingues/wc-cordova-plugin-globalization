@@ -43,6 +43,8 @@ typedef NSUInteger CDVGlobalizationError;
 
 - (void)getCountryCode:(CDVInvokedUrlCommand*)command;
 
+- (void)getCountryCode_Alternative:(CDVInvokedUrlCommand*)command;
+
 /**
  * Returns the string identifier for the clients current locale setting.
  * It returns the locale identifier string to the successCB callback with a

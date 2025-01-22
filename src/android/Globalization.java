@@ -61,6 +61,7 @@ public class Globalization extends CordovaPlugin  {
     public static final String GETCURRENCYPATTERN = "getCurrencyPattern";
     public static final String GETPREFERREDLANGUAGE = "getPreferredLanguage";
     public static final String GETCOUNTRYCODE = "getCountryCode";
+    public static final String GETCOUNTRYCODEALT = "getCountryCode_Alternative";
 
     //GlobalizationCommand Option Parameters
     public static final String OPTIONS = "options";
@@ -98,7 +99,9 @@ public class Globalization extends CordovaPlugin  {
                 obj = getPreferredLanguage();
             }else if (action.equals(GETCOUNTRYCODE)){
                 obj = getCountryCode();
-            }else if (action.equalsIgnoreCase(DATETOSTRING)) {
+            }else if (action.equals(GETCOUNTRYCODEALT)){
+                obj = getCountryCode_Alternative();
+            } else if (action.equalsIgnoreCase(DATETOSTRING)) {
                 obj = getDateToString(data);
             }else if(action.equalsIgnoreCase(STRINGTODATE)){
                 obj = getStringtoDate(data);
@@ -223,7 +226,6 @@ public class Globalization extends CordovaPlugin  {
             throw new GlobalizationError(GlobalizationError.UNKNOWN_ERROR);
         }
     }
-
     /*
      * @Description: Returns Country code.
      *
@@ -236,6 +238,25 @@ public class Globalization extends CordovaPlugin  {
         JSONObject obj = new JSONObject();
         try {
             obj.put("value", Locale.getDefault().getCountry());
+            return obj;
+        } catch (Exception e) {
+            throw new GlobalizationError(GlobalizationError.UNKNOWN_ERROR);
+        }
+    }
+
+    private JSONObject getCountryCode_Alternative() throws GlobalizationError {
+        JSONObject obj = new JSONObject();
+        try {
+            Context context = this.cordova.getActivity().getApplicationContext();
+            LocaleList locales = context.getResources().getConfiguration().getLocales();
+
+            String country = "";
+
+            if (!locales.isEmpty()) {
+                country = locales.get(0).getCountry();
+            }
+
+            obj.put("value", country);
             return obj;
         } catch (Exception e) {
             throw new GlobalizationError(GlobalizationError.UNKNOWN_ERROR);

@@ -69,19 +69,22 @@
     [self.commandDelegate sendPluginResult:result callbackId:[command callbackId]];
 }
 
-- (void)getCountryCode:(CDVInvokedUrlCommand*)command
-{
-    CDVPluginResult* result = nil;
-
+@implementation DeviceRegion
+- (void)getCountryCode:(CDVInvokedUrlCommand*)command {
     NSLocale *locale = [NSLocale currentLocale];
-    NSString *countryCode = [locale objectForKey:NSLocaleCountryCode];
+    NSString *regionCode = [locale objectForKey:NSLocaleCountryCode];
 
-    NSDictionary* dictionary = [NSDictionary dictionaryWithObject:countryCode forKey:@"value"];
+    CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:regionCode];
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+}
 
-    result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK
-                            messageAsDictionary:dictionary];
+@implementation DeviceRegion
+- (void)getCountryCode_Alternative:(CDVInvokedUrlCommand*)command {
+    NSLocale *locale = [NSLocale currentLocale];
+    NSString *regionCode = [locale objectForKey:NSLocaleCountryCode];
 
-    [self.commandDelegate sendPluginResult:result callbackId:[command callbackId]];
+    CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:regionCode];
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 
 - (void)getLocaleName:(CDVInvokedUrlCommand*)command

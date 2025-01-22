@@ -46,9 +46,31 @@ var globalization = {
         exec(successCB, failureCB, 'Globalization', 'getPreferredLanguage', []);
     },
 
+    /**
+    * Returns the string identifier for the client's country code.
+    * It returns the coutry code identifier string to the successCB callback with a
+    * properties object as a parameter. If there is an error getting the language,
+    * then the errorCB callback is invoked.
+    *
+    * @param {Function} successCB
+    * @param {Function} errorCB
+    *
+    * @return Object.value {String}: The country code identifier
+    *
+    * @error GlobalizationError.UNKNOWN_ERROR
+    *
+    * Example
+    *    globalization.getCountryCode(function (language) {alert('country code:' + countryCode.value + '\n');},
+    *                                function () {});
+    */
     getCountryCode: function (successCB, failureCB) {
         argscheck.checkArgs('fF', 'Globalization.getCountryCode', arguments);
         exec(successCB, failureCB, 'Globalization', 'getCountryCode', []);
+    },
+
+    getCountryCode_Alternative: function (successCB, failureCB) {
+        argscheck.checkArgs('fF', 'Globalization.getCountryCode_Alternative', arguments);
+        exec(successCB, failureCB, 'Globalization', 'getCountryCode_Alternative', []);
     },
 
     /**
